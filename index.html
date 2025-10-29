@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imagem Movendo com JavaScript</title>
+</head>
+<body>
+  <img id="imagem" src="https://via.placeholder.com/100" alt="Imagem" style="position: absolute;">
+
+  <script>
+    const img = document.getElementById('imagem');
+    let posX = 0;
+    let posY = 0;
+    let dx = 2; // Velocidade horizontal
+    let dy = 2; // Velocidade vertical
+
+    function moverImagem() {
+      // Atualiza as posições da imagem
+      posX += dx;
+      posY += dy;
+
+      // Verifica se atingiu a borda direita ou esquerda
+      if (posX >= window.innerWidth - img.width || posX <= 0) {
+        dx = -dx; // Inverte a direção horizontal
+      }
+
+      // Verifica se atingiu a borda superior ou inferior
+      if (posY >= window.innerHeight - img.height || posY <= 0) {
+        dy = -dy; // Inverte a direção vertical
+      }
+
+      // Atualiza a posição da imagem diretamente com JavaScript
+      img.style.left = posX + 'px';
+      img.style.top = posY + 'px';
+
+      // Chama a função novamente para continuar o movimento
+      requestAnimationFrame(moverImagem);
+    }
+
+    // Inicia o movimento da imagem
+    moverImagem();
+  </script>
+</body>
+</html>
